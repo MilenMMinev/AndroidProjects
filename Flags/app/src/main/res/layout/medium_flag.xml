@@ -1,0 +1,35 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Flags">
+
+
+    <View
+        android:background="@color/white"
+        android:layout_width="@dimen/square_size"
+        android:layout_height="@dimen/square_size"
+        android:onClick="changeColor"
+        />
+
+    <View
+        android:layout_width="@dimen/square_size"
+        android:layout_height="@dimen/square_size"
+        android:layout_marginTop="@dimen/offset1"
+        android:layout_marginLeft="@dimen/offset1"
+        android:background="@color/green"
+        android:onClick="changeColor"
+        />
+
+    <View
+        android:layout_width="@dimen/square_size"
+        android:layout_height="@dimen/square_size"
+        android:layout_marginTop="@dimen/offset2"
+        android:layout_marginLeft="@dimen/offset2"
+        android:background="@color/red"
+        android:onClick="changeColor"
+        />
+
+
+</FrameLayout>

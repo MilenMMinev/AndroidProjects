@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/black"
+    tools:context=".Flags">
+
+    <View
+        android:id="@+id/green_segment"
+        android:layout_width="@dimen/flag_segment_width"
+        android:layout_height="match_parent"
+        android:background="@color/green"
+        android:onClick="changeColor"
+        />
+
+    <View
+        android:id="@+id/white_segment"
+        android:background="@color/white"
+        android:layout_width="@dimen/flag_segment_width"
+        android:layout_height="match_parent"
+        android:onClick="changeColor"
+        />
+
+
+    <View
+        android:id="@+id/red_segment"
+        android:layout_width="@dimen/flag_segment_width"
+        android:layout_height="match_parent"
+        android:background="@color/red"
+        android:onClick="changeColor"
+        />
+
+
+</LinearLayout>
