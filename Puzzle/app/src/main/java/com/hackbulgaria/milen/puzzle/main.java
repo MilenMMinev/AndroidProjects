@@ -1,6 +1,7 @@
 package com.hackbulgaria.milen.puzzle;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,8 +21,8 @@ public class main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         makeFullScreen();
-
 
         final GridLayout masterParent = (GridLayout) findViewById(R.id.main_layout);
 
@@ -30,28 +31,23 @@ public class main extends Activity {
         List<Drawable> shuffledPieces = obtainDrawables(pieces);
         Collections.shuffle(shuffledPieces);
 
-
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         final GridLayout gl = new GridLayout(this);
-
 
         gl.setLayoutParams(params);
         gl.setColumnCount(4);
         gl.setRowCount(4);
         masterParent.addView(gl);
 
-
-
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++)
             {
                 final ImageView imageView = new ImageView(this);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-                imageView.setPadding(2,2,2,2);
-                ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(320, 240);
+                imageView.setPadding(1,1,1,1);
+                ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(1920/4, 1080/4);
                 imageView.setImageDrawable(shuffledPieces.get(i*4+j));
                 imageView.setLayoutParams(lp);
-
                 imageView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -60,7 +56,6 @@ public class main extends Activity {
                         return false;
                     }
                 });
-
                 imageView.setOnDragListener(new View.OnDragListener() {
                     @Override
                     public boolean onDrag(View view, DragEvent dragEvent) {
@@ -86,9 +81,9 @@ public class main extends Activity {
                 gl.addView(imageView);
         }
     }
-
 }
     private void makeFullScreen() {
+        getActionBar().hide();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
@@ -100,7 +95,6 @@ public class main extends Activity {
         for(int i = 0; i < 16; i++)
             drawables.add(array.getDrawable(i));
         return drawables;
-
     }
 
 

@@ -23,6 +23,7 @@ public class main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getActionBar().hide();
 
         imageView = (ImageView) findViewById(R.id.image);
 
