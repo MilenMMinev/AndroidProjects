@@ -16,13 +16,20 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         makeFullScreen();
 
-        DrawingView view = new DrawingView(this);
+        final DrawingView drawingView = new DrawingView(this);
+
+        drawingView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawingView.onClickEvent();
+
+            }
+        });
 
         GameClock gameClock = new GameClock();
-        gameClock.subscribe(view);
+        gameClock.subscribe(drawingView);
 
-
-        setContentView(R.layout.activity_main);
+        setContentView(drawingView);
     }
 
     @Override

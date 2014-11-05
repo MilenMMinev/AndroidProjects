@@ -16,7 +16,15 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
         bird.onGameEvent(gameEvent);
         background.onGameEvent(gameEvent);
         obstacle.onGameEvent(gameEvent);
+        if (collision(bird, obstacle))
+        {}
+            invalidate();
 
+    }
+
+
+    public void onClickEvent(){
+        bird.onClick();
     }
 
     public DrawingView(Context context) {
@@ -47,13 +55,7 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
         bird.draw(canvas);
         obstacle.draw(canvas);
 
-        if (collision(bird, obstacle))
-            Log.v("Collide", "");
-
         super.onDraw(canvas);
-        invalidate();
-
-
     }
 
     private boolean collision(Bird bird, Obstacle obstacle) {

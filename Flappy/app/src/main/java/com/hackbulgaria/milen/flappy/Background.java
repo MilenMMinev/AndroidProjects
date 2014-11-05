@@ -10,6 +10,7 @@ import android.util.Log;
 
 public class Background extends GameObject {
     private Bitmap bitmap;
+    private Rect src, dst;
 
     Background(Context context, int id)
     {
@@ -21,13 +22,9 @@ public class Background extends GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        Rect src, dst;
 
-        if(-x > bitmap.getWidth()){
-            x += bitmap.getWidth();
-        }
 
-        moveBackground();
+        canvas.drawBitmap(bitmap, x+Settings.DEVICE_WIDTH, y, null);
         canvas.drawBitmap(bitmap, x, y, null);
 
     }
@@ -49,6 +46,13 @@ public class Background extends GameObject {
 
     @Override
     public void onGameEvent(GameEvent event) {
+        if(-x > bitmap.getWidth()){
+            x += bitmap.getWidth();
+        }
+
+
+
+        moveBackground();
 
     }
 

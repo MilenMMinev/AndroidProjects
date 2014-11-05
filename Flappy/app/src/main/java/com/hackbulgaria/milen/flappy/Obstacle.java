@@ -40,31 +40,10 @@ public class Obstacle extends GameObject{
 
     @Override
     public void draw(Canvas canvas) {
-        if(spawn)
-        {
-           rect.add(spawnObstacle());
-           spawn = false;
-        }
-
-        if(activeObstacle.right < Settings.BIRD_START_X + 64){
-            count ++;
-            activeObstacle = rect.get(count);
-        }
-
-        paint = new Paint();
-        paint.setColor(Color.GREEN);
-
 
         for(Rect r : rect) {
             canvas.drawRect(r, paint);
             moveObstacle(r);
-        }
-
-        counter++;
-        if(counter == 150)
-        {
-            spawn = true;
-            counter = 0;
         }
 
     }
@@ -88,6 +67,29 @@ public class Obstacle extends GameObject{
 
     @Override
     public void onGameEvent(GameEvent event) {
+        if(spawn)
+        {
+            rect.add(spawnObstacle());
+            spawn = false;
+        }
+
+        if(activeObstacle.right < Settings.BIRD_START_X + 64){
+            count ++;
+            activeObstacle = rect.get(count);
+        }
+
+        paint = new Paint();
+        paint.setColor(Color.GREEN);
+
+
+        counter++;
+        if(counter == 150)
+        {
+            spawn = true;
+            counter = 0;
+        }
+
+
 
     }
 
