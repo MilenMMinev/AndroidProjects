@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="rocket">@drawable/rocket</drawable>
+    <drawable name="pencil">@drawable/pencil</drawable>
+    <drawable name="cross">@drawable/cross</drawable>
+</resources>
