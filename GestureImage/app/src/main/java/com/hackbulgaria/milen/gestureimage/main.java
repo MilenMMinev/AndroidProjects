@@ -25,6 +25,8 @@ public class main extends Activity {
         setContentView(R.layout.activity_main);
         getActionBar().hide();
 
+
+
         imageView = (ImageView) findViewById(R.id.image);
 
         final ScaleGestureDetector scaleDetector;
