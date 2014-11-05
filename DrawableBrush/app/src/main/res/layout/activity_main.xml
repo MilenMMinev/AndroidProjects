@@ -9,7 +9,8 @@
         android:id="@+id/cross"
         android:src="@drawable/cross"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        />
 
     <ImageView
         android:id="@+id/pencil"
@@ -25,10 +26,11 @@
         android:src="@drawable/rocket"
         android:layout_toRightOf="@id/pencil"/>
 
-    <com.hackbulgaria.milen.drawablebrush.MyView
-        android:layout_below="@+id/pencil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.hackbulgaria.milen.drawablebrush.DrawingView
+        android:id="@+id/drawing"
+        android:layout_below="@id/cross"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 
 </RelativeLayout>

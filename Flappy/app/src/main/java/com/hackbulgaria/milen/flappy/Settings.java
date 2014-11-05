@@ -11,9 +11,9 @@ public class Settings {
     public final static int BIRD_START_X = 100;
     public final static int BIRD_START_Y = 400;
     public static final int BACKGROUND_IMAGE_ID = R.drawable.clouds;
-    public static final int BACKGROUND_SPEED = 3;
-    public static final int BIRD_FALL_SPEED = 10;
-    public static final int BIRD_JUMP_DISTANCE = 25;
+    public static final int BACKGROUND_SPEED = 4;
+    public static final int BIRD_FALL_SPEED = 12;
+    public static final int BIRD_JUMP_DISTANCE = 40;
     public static final int DEVICE_HEIGHT = 1080;
     public static final int DEVICE_WIDTH = 1920;
 

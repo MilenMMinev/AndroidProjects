@@ -4,10 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Interpolator;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
@@ -17,7 +13,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class Bird extends GameObject {
     private Bitmap bitmap;
     private DrawingView view;
-    private float moveUpCounter;
+    private int moveUpCounter;
 
 
     public Bird(Context context, int id, DrawingView drawingView) {
@@ -35,12 +31,6 @@ public class Bird extends GameObject {
         canvas.drawBitmap(bitmap, x, y, null);
 
     }
-
-    private void gameOver() {
-        Toast toast = Toast.makeText(view.getContext(), "Game Over", LENGTH_SHORT);
-        toast.show();
-    }
-
 
     @Override
     public int getWidth() {
@@ -60,7 +50,7 @@ public class Bird extends GameObject {
     @Override
     public void onGameEvent(GameEvent event) {
 
-        if(moveUpCounter <= 1)
+        if(moveUpCounter <= 15)
             moveBirdUp();
 
         if (-y > bitmap.getHeight())
@@ -71,9 +61,6 @@ public class Bird extends GameObject {
             // gameOver();
         }
         moveBirdDown();
-
-
-
     }
 
     private void moveBirdDown(){
@@ -82,12 +69,9 @@ public class Bird extends GameObject {
 
 
     private void moveBirdUp() {
-        DecelerateInterpolator interpolator = new DecelerateInterpolator(1.5f);
-        Log.v("Interpolation", " " + interpolator.getInterpolation(moveUpCounter));
 
-        y = y - Settings.BIRD_JUMP_DISTANCE ;
-        moveUpCounter += 0.04;
-
+        y = y - Settings.BIRD_JUMP_DISTANCE + moveUpCounter * 2;
+        moveUpCounter += 1;
     }
 
 }

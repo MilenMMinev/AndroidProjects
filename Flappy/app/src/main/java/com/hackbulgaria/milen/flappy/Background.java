@@ -10,7 +10,6 @@ import android.util.Log;
 
 public class Background extends GameObject {
     private Bitmap bitmap;
-    private Rect src, dst;
 
     Background(Context context, int id)
     {

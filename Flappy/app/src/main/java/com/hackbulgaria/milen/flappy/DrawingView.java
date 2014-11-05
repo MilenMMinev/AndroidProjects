@@ -3,8 +3,10 @@ package com.hackbulgaria.milen.flappy;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class DrawingView extends ImageView implements GameClock.GameClockListener {
     private Bird bird;
@@ -17,9 +19,10 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
         background.onGameEvent(gameEvent);
         obstacle.onGameEvent(gameEvent);
         if (collision(bird, obstacle))
-        {}
+        {
+            gameOver();
+        }
             invalidate();
-
     }
 
 
@@ -49,6 +52,11 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
         bird = new Bird(this.getContext(), Settings.BIRD_IMAGE_ID, this);
     }
 
+    private void gameOver() {
+        Toast toast = Toast.makeText(getContext(), "Game Over", LENGTH_SHORT);
+        toast.show();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         background.draw(canvas);
@@ -59,14 +67,13 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
     }
 
     private boolean collision(Bird bird, Obstacle obstacle) {
-
         if (obstacle.getPosition().y == 0) // Obstacle spawned at the top
             if (bird.getPosition().y < obstacle.getHeight() &&
                     bird.getPosition().x + bird.getWidth() >= obstacle.getPosition().x)
                 return true;
 
         if (obstacle.getPosition().y != 0) //Obstacle spawned at the bottom
-            if (bird.getPosition().y > obstacle.getPosition().y - obstacle.getHeight() &&
+            if (bird.getPosition().y >= (Settings.DEVICE_HEIGHT - obstacle.getHeight()) &&
                     bird.getPosition().x + bird.getWidth() >= obstacle.getPosition().x)
                 return true;
         return false;
