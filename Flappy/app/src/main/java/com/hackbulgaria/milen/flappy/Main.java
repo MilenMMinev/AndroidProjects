@@ -16,7 +16,10 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         makeFullScreen();
 
+        mp = MediaPlayer.create(this, R.raw.prey_overture);
+
         final DrawingView drawingView = new DrawingView(this);
+        drawingView.setMediaPlayer(mp);
 
         drawingView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +57,6 @@ public class Main extends Activity {
     }
 
     private void setUpMusic() {
-        mp = MediaPlayer.create(this, R.raw.prey_overture);
         mp.start();
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

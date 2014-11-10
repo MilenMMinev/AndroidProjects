@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Toast;
 
@@ -44,6 +45,9 @@ public class Bird extends GameObject {
 
     @Override
     public void onClick() {
+        MediaPlayer mp = MediaPlayer.create(view.getContext(), R.raw.jump);
+        mp.seekTo(2);
+        mp.start();
         moveUpCounter = 0;
     }
 

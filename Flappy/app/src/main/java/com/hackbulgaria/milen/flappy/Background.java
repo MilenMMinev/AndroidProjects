@@ -22,7 +22,6 @@ public class Background extends GameObject {
     @Override
     public void draw(Canvas canvas) {
 
-
         canvas.drawBitmap(bitmap, x+Settings.DEVICE_WIDTH, y, null);
         canvas.drawBitmap(bitmap, x, y, null);
 
@@ -48,8 +47,6 @@ public class Background extends GameObject {
         if(-x > bitmap.getWidth()){
             x += bitmap.getWidth();
         }
-
-
 
         moveBackground();
 

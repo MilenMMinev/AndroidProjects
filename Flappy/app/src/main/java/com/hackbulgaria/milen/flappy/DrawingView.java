@@ -2,6 +2,7 @@ package com.hackbulgaria.milen.flappy;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -12,17 +13,27 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
     private Bird bird;
     private Background background;
     private Obstacle obstacle;
+    private int points;
+    private boolean gameOver;
+    private MediaPlayer mediaPlayer;
 
     @Override
     public void onGameEvent(GameEvent gameEvent) {
-        bird.onGameEvent(gameEvent);
-        background.onGameEvent(gameEvent);
-        obstacle.onGameEvent(gameEvent);
-        if (collision(bird, obstacle))
-        {
-            gameOver();
+
+        if (!gameOver) {
+            bird.onGameEvent(gameEvent);
+            background.onGameEvent(gameEvent);
+            obstacle.onGameEvent(gameEvent);
+            points++;
+            if (collision(bird, obstacle)) {
+                gameOver();
+            } else
+                invalidate();
         }
-            invalidate();
+    }
+
+    public void setMediaPlayer(MediaPlayer m){
+        this.mediaPlayer = m;
     }
 
 
@@ -47,13 +58,18 @@ public class DrawingView extends ImageView implements GameClock.GameClockListene
     }
 
     private void init() {
+        gameOver = false;
         obstacle = new Obstacle();
         background = new Background(this.getContext(), Settings.BACKGROUND_IMAGE_ID);
         bird = new Bird(this.getContext(), Settings.BIRD_IMAGE_ID, this);
+        points = 0;
     }
 
     private void gameOver() {
-        Toast toast = Toast.makeText(getContext(), "Game Over", LENGTH_SHORT);
+
+        mediaPlayer.pause();
+        gameOver = true;
+        Toast toast = Toast.makeText(getContext(), "Game Over. Total: " + points +" points.", LENGTH_SHORT);
         toast.show();
     }
 
